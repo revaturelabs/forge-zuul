@@ -1,0 +1,29 @@
+server:
+  port: 8100
+  
+spring:
+  application:
+    name: ProjectThreeZuul
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+      
+ribbon:
+  ReadTimeout: 60000
+      
+zuul:
+  routes:
+    captain:
+      path: /admin/**
+      service-id: Portfolio-Review-Service
+      strip-prefix: false
+    admiral:
+      path:
+      service-id:
+      strip-prefix: false
