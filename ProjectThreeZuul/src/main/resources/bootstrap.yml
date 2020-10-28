@@ -1,5 +1,5 @@
 server:
-  port: 8100
+  port: 8200
   
 spring:
   application:
@@ -13,14 +13,17 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8080/eureka
-      
+
+ribbon:
+  ReadTimeout: 5000
+
 zuul:
   routes:
     captain:
-      path:
-      service-id:
+      path: /pdf/**
+      service-id: PDFGenerationService
       strip-prefix: false
     admiral:
-      path:
-      service-id:
+      path: /admin/**
+      service-id: PortfolioGenerationService
       strip-prefix: false
